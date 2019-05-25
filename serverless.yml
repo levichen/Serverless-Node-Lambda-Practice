@@ -1,0 +1,30 @@
+service: my-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: YourSatage
+  region: ap-northeast-1
+  deploymentBucket:
+    name: YOUR_BUCKET_NAME
+  environment: ${file(./env/env.${opt:env}.yml)}
+
+package:
+  exclude:
+    - env.variable*
+    - jsconfig.json
+    - package-lock.json
+    - package.json
+    - tests
+    - typings
+
+functions:
+  hello:
+    handler: functions/handler.hello
+    role: arn:aws:iam::${file(./env/env.${opt:env}.yml):AWS_ACCOUNT_ID}:role/Task-Porter-Lambda-Role
+    tags: 
+      foo: bar
+    subnetIds:
+      - ${file(./env/env.${opt:env}.yml):LD_SUBNET_ID1}
+      - ${file(./env/env.${opt:env}.yml):LD_SUBNET_ID2}
+    reservedConcurrency: 5

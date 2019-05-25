@@ -1,0 +1,19 @@
+{
+  "name": "functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^4.0.0",
+    "mtools": "file:./local_modules/mtools"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.6"
+  }
+}
